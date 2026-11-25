@@ -13,12 +13,14 @@ class DemoVideo < Formula
   def install
     libexec.install "bin", "lib", "requirements.txt", "VERSION"
     (libexec/"projects").install "projects/example"
-    # Homebrew's Python 3.12 first on the PATH: demo-video setup makes the
-    # beat tracker's venv with it, and librosa supports it.
+    # Homebrew's Python 3.12, node and ffmpeg first on the PATH: demo-video
+    # setup makes the beat tracker's venv with that Python (librosa supports
+    # it), and an older node of nvm or asdf does not run the tool.
     # DEMO_VIDEO_NAME: the wrapper runs libexec/bin/demo, so its help and
     # errors would otherwise call it "demo".
     (bin/"demo-video").write_env_script libexec/"bin/demo",
-      PATH:            "#{formula_opt_libexec("python@3.12")}/bin:$PATH",
+      PATH:            "#{formula_opt_libexec("python@3.12")}/bin:#{formula_opt_bin("node")}:" \
+                       "#{formula_opt_bin("ffmpeg")}:$PATH",
       DEMO_VIDEO_NAME: "demo-video"
   end
 
@@ -28,8 +30,11 @@ class DemoVideo < Formula
         demo-video setup    # the beat tracker and Playwright with Chromium
         demo-video doctor   # what is found, what is missing
 
-      Put your ElevenLabs key in ELEVENLABS_API_KEY or in
-        ~/.config/demo-video/el-key
+      Put your ElevenLabs key in ELEVENLABS_API_KEY, or in a file that only
+      you can read:
+        mkdir -p ${XDG_CONFIG_HOME:-~/.config}/demo-video
+        (umask 077; read -rs KEY && echo "$KEY" > ${XDG_CONFIG_HOME:-~/.config}/demo-video/el-key)
+      (paste the key at the silent prompt, then press Return)
       `demo-video narrate <project> --dry` needs no key.
     EOS
   end
