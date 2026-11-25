@@ -15,8 +15,11 @@ class DemoVideo < Formula
     (libexec/"projects").install "projects/example"
     # Homebrew's Python 3.12 first on the PATH: demo-video setup makes the
     # beat tracker's venv with it, and librosa supports it.
+    # DEMO_VIDEO_NAME: the wrapper runs libexec/bin/demo, so its help and
+    # errors would otherwise call it "demo".
     (bin/"demo-video").write_env_script libexec/"bin/demo",
-      PATH: "#{formula_opt_libexec("python@3.12")}/bin:$PATH"
+      PATH:            "#{formula_opt_libexec("python@3.12")}/bin:$PATH",
+      DEMO_VIDEO_NAME: "demo-video"
   end
 
   def caveats
@@ -38,5 +41,6 @@ class DemoVideo < Formula
     assert_path_exists testpath/"my-video/project.mjs"
     assert_match "notes-demo", shell_output("#{bin}/demo-video show my-video")
     assert_match "slant", shell_output("#{bin}/demo-video themes")
+    assert_match "demo-video <command>", shell_output("#{bin}/demo-video --help")
   end
 end
