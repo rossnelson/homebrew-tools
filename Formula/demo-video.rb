@@ -30,11 +30,9 @@ class DemoVideo < Formula
         demo-video setup    # the beat tracker and Playwright with Chromium
         demo-video doctor   # what is found, what is missing
 
-      Put your ElevenLabs key in ELEVENLABS_API_KEY, or in a file that only
-      you can read:
-        mkdir -p ${XDG_CONFIG_HOME:-~/.config}/demo-video
-        (umask 077; read -rs KEY && echo "$KEY" > ${XDG_CONFIG_HOME:-~/.config}/demo-video/el-key)
-      (paste the key at the silent prompt, then press Return)
+      Put your ElevenLabs key in ELEVENLABS_API_KEY, or write it to
+        $XDG_CONFIG_HOME/demo-video/el-key   (~/.config/demo-video/el-key by default)
+      and make that file private with chmod 600.
       `demo-video narrate <project> --dry` needs no key.
     EOS
   end
