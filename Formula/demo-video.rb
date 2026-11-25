@@ -3,7 +3,7 @@ class DemoVideo < Formula
   homepage "https://rossnelson.github.io/demo-video-tool/"
   # scripts/release.sh in demo-video-tool writes the url and sha256 of each release.
   url "https://github.com/rossnelson/demo-video-tool/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "0000000000000000000000000000000000000000000000000000000000000000"
+  sha256 "3f1ec8a02a8d6479b3ce8be1a95ba0b9cfd8cbedb56a27903457cf49a73f353a"
   head "https://github.com/rossnelson/demo-video-tool.git", branch: "main"
 
   depends_on "ffmpeg"
