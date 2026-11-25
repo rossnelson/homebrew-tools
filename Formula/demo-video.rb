@@ -32,7 +32,7 @@ class DemoVideo < Formula
 
       Put your ElevenLabs key in ELEVENLABS_API_KEY, or write it to
         $XDG_CONFIG_HOME/demo-video/el-key   (~/.config/demo-video/el-key by default)
-      and make that file private with chmod 600.
+      Make the demo-video folder first, and make the file private with chmod 600.
       `demo-video narrate <project> --dry` needs no key.
     EOS
   end
