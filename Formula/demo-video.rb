@@ -2,8 +2,8 @@ class DemoVideo < Formula
   desc "Narrated, music-timed product videos recorded from a browser"
   homepage "https://rossnelson.github.io/demo-video-tool/"
   # scripts/release.sh in demo-video-tool writes the url and sha256 of each release.
-  url "https://github.com/rossnelson/demo-video-tool/archive/refs/tags/v0.1.0.tar.gz"
-  sha256 "3f1ec8a02a8d6479b3ce8be1a95ba0b9cfd8cbedb56a27903457cf49a73f353a"
+  url "https://github.com/rossnelson/demo-video-tool/archive/refs/tags/v0.2.0.tar.gz"
+  sha256 "22cfe6e9d73aabe4477604591d647625887c53f4532d025a68f1996a04bd1471"
   head "https://github.com/rossnelson/demo-video-tool.git", branch: "main"
 
   depends_on "ffmpeg"
